@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
+    <script
+      defer
+      src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"
+    ></script>
+    <title>veiculo</title>
+  </head>
+  <body>
+    <section class="section has-background-info">
+      <div class="container is-flex is-justify-content-center">
+        <p class="title has-text-white">
+          <strong>Veículos</strong>
+        </p>
+      </div>
+    </section>
+    <section class="section p-5 has-background-info-light">
+      <div class="button">
+        <a href="principal_funcionario.html">Início</a>
+      </div>
+    </section>
+    <section class="section has-background-info-light p-2">
+      <div class="container">
+        <form action="#" method="">
+          <div class="field">
+            <label class="label">Nome</label>
+            <div class="control">
+              <input
+                class="input is-info"
+                type="text"
+                placeholder="Nome Completo do cliente"
+                required
+              />
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Pessoa</label>
+            <div class="control">
+              <div class="select is-info required">
+                <select class="select">
+                  <option>Escolha uma opção</option>
+                  <option>Física</option>
+                  <option>Jurídica</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="field is-grouped">
+            <div class="field">
+              <label class="label"> CPF</label>
+              <div class="control">
+                <input
+                  class="input is-info"
+                  type="text"
+                  placeholder="cpf 000.000.000-00"
+                  required
+                />
+              </div>
+              <p class="help">Utilize o formato 000.000.000-00</p>
+            </div>
+            <div class="label ml-5">
+              <label class="label ml-2 mt-0">CNPJ</label>
+              <div class="control">
+                <input
+                  class="input is-info"
+                  type="text"
+                  placeholder="cnpj"
+                  required
+                />
+              </div>
+              <p class="help">Utilize somente números</p>
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Cor do Veículo</label>
+            <div class="control">
+              <input
+                class="input is-info"
+                type="text"
+                placeholder="Informe a cor do Veículo"
+                required
+              />
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Modelo do Veículo</label>
+            <div class="control">
+              <input
+                class="input is-info"
+                type="text"
+                placeholder="Informe o modelo do Veículo"
+                required
+              />
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Placa do Veículo</label>
+            <div class="control">
+              <input
+                class="input is-info"
+                type="text"
+                placeholder="Informe a placa do Veículo"
+                required
+              />
+            </div>
+          </div>
+          <div class="field">
+            <div class="field">
+              <label class="label">Tipo do Veículo</label>
+              <div class="control">
+                <div class="select is-info" required>
+                  <select class="select">
+                    <option>Selecione uma opção</option>
+                    <option>Carro</option>
+                    <option>Moto</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+          <section>
+            <div class="field is-grouped is-grouped-left mt-5">
+              <p class="control">
+                <a href="enviar.html" class="button is-primary"> Enviar </a>
+              </p>
+              <p class="control">
+                <a  href="principal_funcionario.html" class="button is-danger"> Cancelar </a>
+              </p>
+            </div>
+          </section>
+        </form>
+      </div>
+    </section>
+    <footer>
+      <section class="section has-background-info-dark p-5">
+        <div class="container is-flex is-justify-content-center">
+          <p class="title has-text-white is-6">
+            <strong> @ 2022 Todos os Direitos Reservados</strong>
+          </p>
+        </div>
+      </section>
+    </footer>
+  </body>
+</html>
