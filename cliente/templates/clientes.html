@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+   <section class="section has-background-info-light p-2">
+      <div class="container">
+        <form action="" method="GET">
+          <div class="field is-grouped is-flex is-align-center is-flex-wrap-wrap">
+            <label class="label p-2 mt-3">Nome do Cliente:</label>
+            <div class="control is-expanded p-2 mt-2" >
+              <input  class="input " type="text" name="buscar" value="{{ request.GET.buscar }}" placeholder="Nome do Cliente"/>
+            </div>
+            <div class="control p-2 mt-2">
+            <button type="submit" class="button is-link">
+              Buscar
+            </button>
+          </div>
+          </div>
+        </form>
+     {% if object_list %}
+     <div style="text-align: center"><h1 class="subtitle is-size4">Clientes Cadastrados</h1> </div>
+     <div class="table">
+       <table class="table is-table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+         <thead>
+         <tr>
+         <td class="has-text-centered">Nome</td>
+         <td class="has-text-centered">Fone</td>
+         <td class="has-text-centered">Cpf</td>
+         <td class="has-text-centered">Cnpj</td>
+         <td class="has-text-centered" style="width: 100px;">Ações</td>
+         </tr>
+         </thead>
+         <tbody>
+            {% for cliente in object_list %}
+              <tr>
+                <td>{{ cliente.nome }}</a> </td>
+                <td>{{ cliente.fone }}</td>
+                <td>{{ cliente.cpf }}</td>
+                <td>{{ cliente.cnpj }}</td>
+                <td class="has-text-centered is-flex is-flex-wrap-nowrap is-justify-content-center">
+                  <a href="{% url 'cliente_editar' cliente.pk %}">
+                    <span class="icon">
+                      <i class="fas fa-edit"></i>
+                    </span>
+                  </a>
+
+                  <a href="{% url 'cliente_apagar' cliente.pk %}">
+                    <span class="icon">
+                      <i class="far fa-trash-alt"></i>
+                    </span>
+                  </a>
+                </td>
+              </tr>
+         {% endfor %}
+         </tbody>
+       </table>
+     </div>
+       {% else %}
+              <h2>Não existe cliente cadastrado!</h2>
+       {% endif %}
+      </div>
+          {% include "paginator.html" %}
+     </section>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% if messages %}
+    {% for messages in messages %}
+        <div id="modal-js-exemple" class="modal is-active">
+            <div class="modl-background"></div>
+            <div class="modal-content">
+                <article class="message {{ message.tags }}">
+                    <div class="message_header">
+                        <button class="delete" aria-label="delete"></button>
+                    </div>
+                    <div class="message_body">
+                        {{ message }}
+                    </div>
+                </article>
+            </div>
+            <button class="modl-close is-large" aria-label="close"></button>
+        </div>
+{% endfor %}
+{% endif %}

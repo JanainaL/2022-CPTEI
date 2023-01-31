@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+   <section class="section has-background-info-light p-2">
+      <div class="container">
+        <form action="" method="GET">
+          <div class="field is-grouped is-flex is-align-center is-flex-wrap-wrap">
+            <label class="label p-2 mt-3">Nome do Funcionário:</label>
+            <div class="control is-expanded p-2 mt-2" >
+              <input  class="input " type="text" name="buscar" value="{{ request.GET.buscar }}"
+                      placeholder="Nome do Funcionário"/>
+            </div>
+            <div class="control p-2 mt-2">
+            <button type="submit" class="button is-link">
+              Buscar
+            </button>
+          </div>
+          </div>
+        </form>
+     {% if object_list %}
+     <div style="text-align: center"><h1 class="subtitle is-size4">Funcionários Cadastrados</h1> </div>
+     <div class="table">
+       <table class="table is-table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+         <thead>
+         <tr>
+         <td class="has-text-centered">Nome</td>
+         <td class="has-text-centered">Fone</td>
+         <td class="has-text-centered">Cpf</td>
+         <td class="hast-text-centered" style="width: 100px;">Ações</td>
+         </tr>
+         </thead>
+         <tbody>
+            {% for funcionario in object_list %}
+              <tr>
+                <td>
+                  <a data-target="modal{{funcionario.id}}" class="js-modal-trigger">
+                  {{ funcionario.nome }}</a> </td>
+                <td>{{ funcionario.fone }}</td>
+                <td>{{ funcionario.cpf }}</td>
+                <td class="has-text-centered is-flex is-flex-wrap-nowrap is-justify-content-center">
+                  <a href="{% url 'funcionario_editar' funcionario.pk %}">
+                    <span class="icon">
+                      <i class="fas fa-edit"></i>
+                    </span>
+                  </a>
+
+                  <a href="{% url 'funcionario_apagar' funcionario.pk %}">
+                    <span class="icon">
+                      <i class="far fa-trash-alt"></i>
+                    </span>
+                  </a>
+                </td>
+                <div class="modal" id="modal{{ funcionario.id }}">
+                  <div class="modal-background"></div>
+                  <div class="modal-card">
+                    <header class="modal-card-head">
+                      <p class="modal-card-title">Funcionário: {{ funcionario.nome }}</p>
+                      <button class="delete" aria-label="close" data-bulma-modal="close" id="btnClose"></button>
+                    </header>
+                    <section class="modal-card-body is-flex is-justify-content-center">
+                      <div class="content">
+                        <p class="image is-128x128">
+                          <img src="{{ funcionario.foto.url }}" class="img-fluid" alt=""/>
+                        </p>
+                      </div>
+                    </section>
+                    <footer class="modal-card-foot">
+                      <p>Nome: {{ funcionario.nome }}</p>
+                    </footer>
+                  </div>
+                </div>
+              </tr>
+         {% endfor %}
+         </tbody>
+       </table>
+     </div>
+       {% else %}
+              <h2>Não existe funcionário cadastrado!</h2>
+       {% endif %}
+      </div>
+     <div class="mt-3" style="text-align: center">
+       <span class="step-links">
+           {% if object_list.has_previous %}
+            <a href="?page={{ object_list.previous_page_number }}">Anterior</a>
+          {% endif %}
+
+          <span class="current">
+            <strong>{{ object_list.number }}</strong> de {{ object_list.paginator.num_pages }}
+          </span>
+
+         {% if object_list.has_next %}
+            <a href="?page={{ object_list.next_page_number }}">Próxima</a>
+         {% endif %}
+       </span>
+     </div>
+     </section>
+{% endblock %}
+

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+  <section class="section">
+    <div class="container">
+      <div class="column is-mobile">
+        <div class="column is-half is-offset-quarter">
+          <h3 class="title is-size-3">Dados do Funcionário</h3>
+          <p class="p-2 mt-2"><strong>Nome:</strong> {{ object.nome }}</p>
+          <p class="p-2 mt-2"><strong>Telefone:</strong> {{ object.fone }}</p>
+          <p class="p-2 mt-2"><strong>CPF:</strong> {{ object.cpf }}</p>
+          <p class="p-2 mt-2"><strong>Foto:</strong>{{ object.foto }}</p>
+          <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <p>Confirma a exclusão do funcionario "{{ object}}" ?</p>
+            </br>
+            <button class="button is-link is-primary" type="submit">Apagar</button>
+            <button class="button is-danger is-pulled-rigth" type="reset">
+              <a href="{% url 'funcionarios' %}">Cancelar</a>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}
