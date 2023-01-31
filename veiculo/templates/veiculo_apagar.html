@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+  <section class="section">
+    <div class="container">
+      <div class="column is-mobile">
+        <div class="column is-half is-offset-quarter">
+          <h3 class="title is-size-3">Dados do Veículo</h3>
+          <p class="p-2 mt-2"><strong>Modelo:</strong> {{ object.modelo }}</p>
+          <p class="p-2 mt-2"><strong>Placa:</strong> {{ object.placa }}</p>
+          <p class="p-2 mt-2"><strong>Cor:</strong> {{ object.cor }}</p>
+          <p class="p-2 mt-2"><strong>Quantidade de Pneus:</strong> {{ object.qtdPneu }}</p>
+          <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <p>Confirma a exclusão do veículo "{{ object}}" ?</p>
+            </br>
+            <button class="button is-link is-primary" type="submit">Apagar</button>
+            <button class="button is-danger is-pulled-rigth" type="reset">
+              <a href="{% url 'veiculos' %}">Cancelar</a>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}
+

@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+   <section class="section has-background-info-light p-2">
+      <div class="container">
+        <form action="" method="GET">
+          <div class="field is-grouped is-flex is-align-center is-flex-wrap-wrap">
+            <label class="label p-2 mt-3">Placa:</label>
+            <div class="control is-expanded p-2 mt-2" >
+              <input  class="input " type="text" name="buscar" value="{{ request.GET.buscar }}" placeholder="Placa"/>
+            </div>
+            <div class="control p-2 mt-2">
+            <button type="submit" class="button is-link">
+              Buscar
+            </button>
+          </div>
+          </div>
+        </form>
+     {% if object_list %}
+     <div style="text-align: center"><h1 class="subtitle is-size4">Veículos Cadastrados</h1> </div>
+     <div class="table">
+       <table class="table is-table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+         <thead>
+         <tr>
+         <td class="has-text-centered">Modelo</td>
+         <td class="has-text-centered">Placa</td>
+         <td class="has-text-centered">Cor</td>
+         <td class="has-text-centered">QtdPneu</td>
+         <td colspan="has-text-centered" style="width: 100px;">Ações</td>
+         </tr>
+         </thead>
+         <tbody>
+            {% for veiculo in object_list %}
+              <tr>
+                <td>{{ veiculo.placa }}</a> </td>
+                <td>{{ veiculo.modelo }}</td>
+                <td>{{ veiculo.cor }}</td>
+                <td> {{ veiculo.qtdPneu }}</td>
+                <td class="has-text-centered is-flex is-flex-wrap-nowrap is-justify-content-center">
+                  <a href="{% url 'veiculo_editar' veiculo.pk %}">
+                    <span class="icon">
+                      <i class="fas fa-edit">
+                      </i>
+                    </span>
+                  </a>
+
+                  <a href="{% url 'veiculo_apagar' veiculo.pk %}">
+                    <span class="icon">
+                      <i class="far fa-trash-alt">
+                      </i>
+                    </span>
+                  </a>
+
+                </td>
+                <div class="modal">
+                  <div class="modal"></div>
+                  <div class="modal">
+                    <header class="modal">
+                      <p class="modal-card-title">Placa: {{ veiculo.placa }}</p>
+                      <button class="delete" aria-label="close" data-bulma-modal="close" id="btnClose"></button>
+                    </header>
+                    <footer class="modal-card-foot">
+                      <p>Placa: {{ veiculo.placa }}</p>
+                    </footer>
+                  </div>
+                </div>
+              </tr>
+         {% endfor %}
+         </tbody>
+       </table>
+     </div>
+       {% else %}
+              <h2>Não existe veiculo cadastrado!</h2>
+       {% endif %}
+      </div>
+      {% include "paginator.html" %}
+     </section>
+{% endblock %}
+
